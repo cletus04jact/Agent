@@ -1,0 +1,212 @@
+[
+    {
+        "question": "What documents are needed to open a savings account?",
+        "answer": "You need PAN, Aadhaar, and one of the following: Passport, Voter ID, Driving License, etc. Communication address proof may also be required.",
+        "category": "Account Opening"
+    },
+    {
+        "question": "Is PAN card mandatory to open an account?",
+        "answer": "Yes, PAN card is mandatory to open an JC Bank Savings Account.",
+        "category": "Account Opening"
+    },
+    {
+        "question": "Can minors open a savings account?",
+        "answer": "Yes, JC Bank offers Young Star and Smart Star accounts for minors. These are operated by a guardian until the child turns 18.",
+        "category": "Account Opening"
+    },
+    {
+        "question": "What is KYC and how is it verified?",
+        "answer": "KYC (Know Your Customer) is verified using PAN, Aadhaar, and an OTP-based authentication process.",
+        "category": "Account Opening"
+    },
+    {
+        "question": "What types of accounts does JC Bank offer?",
+        "answer": "JC Bank offers Savings, Salary, Current, Fixed Deposit (FD), Recurring Deposit (RD), and Loan Accounts.",
+        "category": "Account Types"
+    },
+    {
+        "question": "What is a 3-in-1 account?",
+        "answer": "A 3-in-1 account includes a Savings Account, Demat Account, and Trading Account for seamless investment.",
+        "category": "Account Types"
+    },
+    {
+        "question": "What benefits do I get with an JC Savings Account?",
+        "answer": "You get Internet Banking, Mobile Banking, Debit Card, ATM access, insurance, and offers on shopping, travel, and more.",
+        "category": "Account Benefits"
+    },
+    {
+        "question": "Do I get a Debit Card with a Savings Account?",
+        "answer": "Yes, you will receive a Debit Card after successful account opening and KYC verification.",
+        "category": "Account Benefits"
+    },
+    {
+        "question": "Is mobile banking free?",
+        "answer": "Yes, JC Bank provides free access to mobile banking through its iMobile app.",
+        "category": "Account Benefits"
+    },
+    {
+        "question": "What insurance coverage is provided with the account?",
+        "answer": "Savings Accounts may include \u20b950,000 accident insurance. Premium accounts offer up to \u20b93 Cr coverage.",
+        "category": "Account Benefits"
+    },
+    {
+        "question": "How do I register for Internet Banking?",
+        "answer": "You can register using your User ID provided during account opening and generate a password online.",
+        "category": "Digital Banking"
+    },
+    {
+        "question": "What is the iMobile app?",
+        "answer": "iMobile is JC Bank's mobile banking app for managing your account, transferring funds, paying bills, and more.",
+        "category": "Digital Banking"
+    },
+    {
+        "question": "What is the current interest rate for Savings Accounts?",
+        "answer": "As of June 26, 2025, the interest rate for JC Savings Accounts is 2.5% p.a.",
+        "category": "Interest"
+    },
+    {
+        "question": "How is interest calculated on Savings Accounts?",
+        "answer": "Interest is calculated daily on end-of-day balance and credited quarterly.",
+        "category": "Interest"
+    },
+    {
+        "question": "Is Savings Account interest taxable?",
+        "answer": "Yes, interest above \u20b910,000 in a financial year is taxable under your income.",
+        "category": "Interest"
+    },
+    {
+        "question": "What is a Savings Account Interest Calculator?",
+        "answer": "It is an online tool that helps estimate the interest earned based on balance, rate, and duration.",
+        "category": "Interest Calculator"
+    },
+    {
+        "question": "How do I use the Interest Calculator?",
+        "answer": "Enter your account balance, interest rate, and duration. The calculator will compute your interest earnings.",
+        "category": "Interest Calculator"
+    },
+    {
+        "question": "What types of loans does JC Bank offer?",
+        "answer": "JC Bank offers Home, Personal, Car, and Education Loans.",
+        "category": "Loans"
+    },
+    {
+        "question": "What is the starting interest rate for Personal Loans?",
+        "answer": "JC Bank Personal Loans start from 10.85% p.a.",
+        "category": "Loans"
+    },
+    {
+        "question": "What types of transactions can I perform?",
+        "answer": "Deposits, withdrawals, UPI, IMPS, NEFT, RTGS transfers, bill payments, and loan EMI payments.",
+        "category": "Transactions"
+    },
+    {
+        "question": "What details are included in a transaction?",
+        "answer": "Transaction ID, amount, timestamp, type, source account, destination account, and payment mode.",
+        "category": "Transactions"
+    },
+    {
+        "question": "What premium cards does JC offer?",
+        "answer": "JC offers Mastercard World, Visa Infinite, and Emeralde Credit Cards with lounge access and lifestyle benefits.",
+        "category": "Cards"
+    },
+    {
+        "question": "How many lounge accesses come with the Mastercard World Debit Card?",
+        "answer": "It includes 2 complimentary airport lounge accesses per quarter.",
+        "category": "Cards"
+    },
+    {
+        "question": "What is Monthly Average Balance (MAB)?",
+        "answer": "MAB is the average of daily closing balances in a month. You must maintain \u20b910,000 for standard savings accounts.",
+        "category": "Balance & Charges"
+    },
+    {
+        "question": "Is there a fee for not maintaining MAB?",
+        "answer": "Yes, non-maintenance of the minimum average balance may lead to charges.",
+        "category": "Balance & Charges"
+    },
+    {
+        "question": "Do I get a Relationship Manager with my account?",
+        "answer": "Yes, Premium and Private Banking customers get a dedicated Relationship Manager and Service Manager.",
+        "category": "Customer Support"
+    },
+    {
+        "question": "What is JC's priority customer care number?",
+        "answer": "Priority banking customers can call 1800 1080 for assistance.",
+        "category": "Customer Support"
+    },
+    {
+        "question": "What is the Smart Star Savings Account?",
+        "answer": "The Smart Star Savings Account is for minors above 10 years of age. They can independently open and operate the account.",
+        "category": "Youth Accounts"
+    },
+    {
+        "question": "What is the objective of the Young Star and Smart Star Savings Accounts?",
+        "answer": "The Young Star Account helps parents save for their child\u2019s future. The Smart Star Account encourages financial independence in minors above 10 years by allowing them to operate the account themselves.",
+        "category": "Youth Accounts"
+    },
+    {
+        "question": "What are the debit limits for Smart Star Savings Accounts?",
+        "answer": "With Guardian Consent, the debit limit is \u20b95,00,000 per financial year. Without Guardian Consent, it is \u20b950,000. If the limit is breached, the account is frozen.",
+        "category": "Youth Accounts"
+    },
+    {
+        "question": "What is the MAB for the Young Star Savings Account?",
+        "answer": "The minimum Monthly Average Balance (MAB) is \u20b92,500. Charges for non-maintenance are 6% of the shortfall or \u20b9500, whichever is lower.",
+        "category": "Youth Accounts"
+    },
+    {
+        "question": "What is the benefit of investing in a Senior Citizens FD?",
+        "answer": "Senior Citizens can avail of an additional 0.50% interest rate on Fixed Deposits.",
+        "category": "Fixed Deposits"
+    },
+    {
+        "question": "What is the maximum interest rate tenure for an FD?",
+        "answer": "The highest interest rate of 6.60% p.a. is available for a tenure of 2 years 1 day to 10 years.",
+        "category": "Fixed Deposits"
+    },
+    {
+        "question": "Can I avail an overdraft against a Fixed Deposit?",
+        "answer": "Yes, JC Bank offers overdraft facilities against Fixed Deposits to help during emergencies.",
+        "category": "Fixed Deposits"
+    },
+    {
+        "question": "What types of Fixed Deposits are offered?",
+        "answer": "JC offers Traditional FD (regular interest payouts), Cumulative FD (interest paid at maturity), Tax Saver FD, and Money Multiplier FD.",
+        "category": "Fixed Deposits"
+    },
+    {
+        "question": "What are the tenures available for Fixed Deposits?",
+        "answer": "Tenure ranges from 7 days to 10 years, depending on the type of FD chosen.",
+        "category": "Fixed Deposits"
+    },
+    {
+        "question": "What documents are required for opening a Fixed Deposit?",
+        "answer": "For residents: PAN or Aadhaar and address proof. For NRIs: Passport, Visa, and overseas address proof.",
+        "category": "Fixed Deposits"
+    },
+    {
+        "question": "Who is eligible to open a Fixed Deposit?",
+        "answer": "Individuals above 18, NRIs, HUFs, Trusts, Companies, Minors with guardianship, and other eligible entities can open an FD.",
+        "category": "Fixed Deposits"
+    },
+    {
+        "question": "How do I renew a Fixed Deposit?",
+        "answer": "FDs can be auto-renewed or manually renewed via Internet Banking or the iMobile app.",
+        "category": "Fixed Deposits"
+    },
+    {
+        "question": "How can I add money to my FD account?",
+        "answer": "You can invest online using the iMobile app, website, or ATM. Your savings account should be KYC verified.",
+        "category": "Fixed Deposits"
+    },
+    {
+        "question": "What are the key benefits of Fixed Deposits over other investments?",
+        "answer": "FDs provide guaranteed returns, flexible tenure, higher interest than savings, and predictable income.",
+        "category": "Fixed Deposits"
+    },
+    {
+        "question": "What is a Fixed Deposit?",
+        "answer": "A Fixed Deposit (FD) is a secure investment that provides assured returns based on the interest rate at account opening.",
+        "category": "Fixed Deposits"
+    }
+]
