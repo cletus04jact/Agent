@@ -1,64 +1,72 @@
 import os
-import json
 from dotenv import load_dotenv
-from langchain_community.vectorstores import FAISS
-from langchain_community.document_loaders import TextLoader, PyPDFLoader
-from langchain.text_splitter import CharacterTextSplitter
+from langchain_community.document_loaders import PyPDFLoader, JSONLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from langchain.schema import Document
+from langchain_community.vectorstores import FAISS
+from pathlib import Path
 
 load_dotenv()
-print("✅ Environment variables loaded successfully.")
 
-def load_custom_json(path):
+# --- CONFIGURATION ---
+SOURCE_DOCS_DIR = Path("source_documents")
+VECTOR_STORE_DIR = Path("vectordb/faiss_index")
+
+def load_documents():
+    """Loads all PDF and JSON documents from the source directory."""
     documents = []
-    with open(path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-        for item in data:
-            question = item.get("question", "")
-            answer = item.get("answer", "")
-            if question and answer:
-                content = f"Q: {question}\nA: {answer}"
-                metadata = {"category": item.get("category", "General"), "source": path}
-                documents.append(Document(page_content=content, metadata=metadata))
+    # Load PDFs
+    for doc_path in SOURCE_DOCS_DIR.glob("*.pdf"):
+        loader = PyPDFLoader(str(doc_path))
+        documents.extend(loader.load())
+        print(f"Loaded {doc_path.name}")
+        
+    # Load JSON files with the corrected schema
+    for doc_path in SOURCE_DOCS_DIR.glob("*.json"):
+        print(f"Loading JSON file: {doc_path.name}")
+        loader = JSONLoader(
+            file_path=str(doc_path),
+            # This schema iterates through each object in the root array '[ ]'
+            # and formats the question and answer into a single text document.
+            jq_schema='.[] | "Question: " + .question + "\nAnswer: " + .answer',
+            text_content=True, # We are creating the text content directly with jq
+        )
+        try:
+            documents.extend(loader.load())
+            print(f"Successfully loaded and processed {doc_path.name}")
+        except Exception as e:
+            print(f"Error loading {doc_path.name}. Check if it's a valid JSON array. Error: {e}")
+
     return documents
 
-def ingest():
-    data_dir = "database/general"
-    documents = []
-
-    for file in os.listdir(data_dir):
-        file_path = os.path.join(data_dir, file)
-
-        if file.endswith(".pdf"):
-            try:
-                documents.extend(PyPDFLoader(file_path).load())
-                print(f"✅ Loaded PDF: {file}")
-            except Exception as e:
-                print(f"❌ Error loading PDF {file}: {e}")
-
-        elif file.endswith(".json"):
-            try:
-                documents.extend(load_custom_json(file_path))
-                print(f"✅ Loaded JSON: {file}")
-            except Exception as e:
-                print(f"❌ Error loading JSON {file}: {e}")
-
-    if not documents:
-        print("⚠️ No documents found to process.")
+def main():
+    print("--- Starting Data Ingestion ---")
+    
+    # 1. Load documents
+    docs = load_documents()
+    if not docs:
+        print("No documents found in the 'source_documents' directory. Exiting.")
         return
 
-    splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-    docs = splitter.split_documents(documents)
+    # 2. Split documents into chunks
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
+    splits = text_splitter.split_documents(docs)
+    print(f"Split {len(docs)} documents into {len(splits)} chunks.")
 
-    embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/embedding-001",
-        google_api_key=os.getenv("GEMINI_API_KEY")
-    )
+    # 3. Create embeddings
+    api_key = os.getenv("GOOGLE_API_KEY")
+    if not api_key:
+        raise ValueError("GOOGLE_API_KEY not found. Please check your .env file.")
+    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=api_key)
 
-    vectorstore = FAISS.from_documents(docs, embeddings)
-    vectorstore.save_local("vectordb/faiss_index")
-    print("✅ Vectorstore saved successfully with embeddings.")
+    # 4. Create and save FAISS vector store
+    print(f"Creating vector store from {len(splits)} document chunks...")
+    vector_store = FAISS.from_documents(splits, embeddings)
+    VECTOR_STORE_DIR.mkdir(parents=True, exist_ok=True)
+    vector_store.save_local(str(VECTOR_STORE_DIR))
+    
+    print("--- Data Ingestion Complete ---")
+    print(f"Vector store saved at: {VECTOR_STORE_DIR}")
 
 if __name__ == "__main__":
-    ingest()
+    main()

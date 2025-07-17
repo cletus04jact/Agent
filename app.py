@@ -1,37 +1,41 @@
-import streamlit as st
-from model.local_qa import get_local_qa
-from model.web_agent import get_web_agent
-from model.memory import memory
+import os
+from dotenv import load_dotenv
+from langchain_google_genai import ChatGoogleGenerativeAI
+from core.agent import create_agent
 
-st.set_page_config(page_title="Banking Assistant", layout="centered")
-st.title("💬 Banking AI Assistant with Memory")
-st.markdown("Ask general banking queries. It will use local docs first, then search the web.")
+# Load environment variables from .env file at the start
+load_dotenv()
 
-query = st.text_input("🔍 Your question:")
+def main():
+    """Main function to initialize and run the banking agent."""
+    api_key = os.getenv("GOOGLE_API_KEY")
+    if not api_key:
+        raise ValueError("GOOGLE_API_KEY not found. Please check your .env file.")
 
-if query:
-    with st.spinner("Searching local documents..."):
-        qa_chain = get_local_qa()
-        result = qa_chain({"question": query})
+    # Initialize the primary LLM for the agent
+    llm = ChatGoogleGenerativeAI(
+        model="gemini-1.5-flash",
+        temperature=0.3,
+        google_api_key=api_key
+    )
 
-    if result["answer"] and "I don't know" not in result["answer"]:
-        st.subheader("📄 Answer from Documents")
-        st.write(result["answer"])
+    # Create the agent executor
+    agent_executor = create_agent(llm)
 
-        with st.expander("📁 Source Files"):
-            for doc in result["source_documents"]:
-                st.markdown(f"**File**: `{doc.metadata.get('source')}`")
-                st.markdown(doc.page_content[:400] + "...")
-    else:
-        st.warning("Nothing found locally. Searching web...")
-        with st.spinner("🔍 Searching online..."):
-            agent = get_web_agent()
-            web_result = agent.run(query)
-            st.subheader("🌐 Web Answer")
-            st.write(web_result)
+    print("🤖 Giggso Banking Agent is online. How can I help you today? (type 'exit' to quit)")
+    
+    while True:
+        try:
+            query = input("You: ")
+            if query.lower() == "exit":
+                print("👋 Goodbye!")
+                break
+            
+            response = agent_executor.invoke({"input": query})
+            print("AI:", response['output'])
 
-# Chat history view
-with st.expander("🧠 Memory (Conversation History)"):
-    for m in memory.chat_memory.messages:
-        role = "User" if m.type == "human" else "AI"
-        st.markdown(f"**{role}:** {m.content}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    main()

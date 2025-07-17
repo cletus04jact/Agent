@@ -1,0 +1,11 @@
+langchain
+langchain-google-genai
+langchain-community
+faiss-cpu
+python-dotenv
+numpy-financial
+rank_bm25
+tavily-python
+langchain-experimental # For SQL Agent
+sqlalchemy
+pypdf
