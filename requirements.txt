@@ -1,11 +1,13 @@
+streamlit
 langchain
 langchain-google-genai
 langchain-community
+langchain-core
 faiss-cpu
 python-dotenv
 numpy-financial
 rank_bm25
 tavily-python
-langchain-experimental # For SQL Agent
 sqlalchemy
+psycopg2-binary
 pypdf
